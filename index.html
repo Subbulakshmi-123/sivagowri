@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SivaGowri Constructions</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        transition: 0.4s;
+      }
+
+      .navbar.scrolled {
+        background: rgba(0, 0, 0, 0.85);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: #fff !important;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #b7d77d !important;
+      }
+
+      .btn-quote {
+        background-color: #b7d77d;
+        border: none;
+        padding: 10px 24px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        color: #000;
+      }
+
+      .btn-quote:hover {
+        background-color: #c6f68d;
+        transform: translateY(-3px);
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding-left: 8%;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      /* Video Styling */
+      .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        filter: brightness(0.5); /* Dark overlay effect */
+      }
+
+      /* Hero Content above video */
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin: 20px 0 30px;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Section Styles */
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 50px;
+        color: #333;
+      }
+
+      /* Services */
+      .service-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+      }
+
+      .service-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .service-card i {
+        font-size: 40px;
+        color: #8bbf3f;
+        margin-bottom: 15px;
+      }
+
+      /* About Section */
+      .about img {
+        border-radius: 10px;
+        width: 100%;
+      }
+
+      /* Projects */
+      .project-card img {
+        border-radius: 10px;
+        width: 100%;
+        transition: transform 0.4s ease;
+      }
+
+      .project-card img:hover {
+        transform: scale(1.05);
+      }
+
+      footer {
+        background: #111;
+        color: #bbb;
+        text-align: center;
+        padding: 60px 10%;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #b7d77d;
+      }
+
+      .footer-nav {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-nav li {
+        margin: 10px 0;
+      }
+
+      .footer-nav a {
+        color: #f8f8e9;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .footer-nav a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-column h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 50px;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        color: white;
+        text-decoration: none;
+        line-height: 1.8;
+      }
+
+      /* Contact */
+      .contact-section {
+        background-color: #b7d77d;
+        padding: 100px 8%;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .contact-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 80px;
+        flex-wrap: wrap;
+      }
+
+      .contact-left {
+        flex: 1 1 420px;
+        max-width: 520px;
+        text-align: left;
+      }
+
+      .section-subtitle {
+        font-size: 14px;
+        font-weight: 700;
+        color: #4a3f1e;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        font-size: 42px;
+        font-weight: 600;
+        color: #1f1c09;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .section-desc {
+        color: #4e4b33;
+        font-size: 17px;
+        margin-bottom: 35px;
+      }
+
+      .quote-form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      input,
+      select {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #999;
+        padding: 8px 5px;
+        font-size: 15px;
+        outline: none;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #000;
+      }
+
+      .submit-btn {
+        background-color: #1a1505;
+        color: #fff;
+        border: none;
+        padding: 12px 36px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        width: fit-content;
+        font-size: 14px;
+      }
+
+      .submit-btn:hover {
+        background-color: #000;
+      }
+
+      .contact-right img {
+        width: 100%;
+        max-width: 550px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      @media (max-width: 900px) {
+        .contact-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .contact-left {
+          max-width: 100%;
+          text-align: left;
+        }
+        .contact-right img {
+          width: 100%;
+          margin-top: 40px;
+        }
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 20px;
+        font-size: 14px;
+      }
+
+      .footer-bottom a {
+        color: #f8f8e9;
+        text-decoration: none;
+      }
+
+      .footer-bottom a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .footer-bottom {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid px-5">
+        <a class="navbar-brand" href="#">SivaGowri</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <!-- Video Background -->
+      <video autoplay muted loop playsinline class="hero-video">
+        <source
+          src="7578541-uhd_3840_2160_30fps.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support HTML5 video.
+      </video>
+
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1>Building Dreams,<br />Creating Reality</h1>
+        <p>Experienced & Reliable Remodelers since 1968</p>
+        <a href="#contact" class="btn btn-quote">Get a Quote →</a>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" style="padding: 80px 0; background: #f7f7f7">
+      <div class="container">
+        <!-- Title -->
+        <h2
+          class="section-title"
+          style="text-align: center; font-size: 40px; color: #333"
+        >
+          About Us
+        </h2>
+        <p
+          style="
+            text-align: center;
+            margin-bottom: 50px;
+            color: #555;
+            font-size: 16px;
+          "
+        ></p>
+
+        <!-- Content Row -->
+        <div class="row align-items-center g-5">
+          <!-- Left Image -->
+          <div class="col-md-6">
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80"
+              alt="About Us"
+              style="
+                width: 100%;
+                border-radius: 20px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+              "
+            />
+          </div>
+
+          <!-- Right Text -->
+          <div class="col-md-6">
+            <h3 style="color: #1f1c09; font-size: 28px; margin-bottom: 20px">
+              Our Story
+            </h3>
+            <p
+              style="
+                color: #4e4b33;
+                font-size: 16px;
+                line-height: 1.7;
+                margin-bottom: 20px;
+              "
+            >
+              SivaGowri Constructions is a family-owned company that has been
+              building dreams for over five decades. Our mission is to deliver
+              top-quality construction, renovation, and interior design services
+              that combine innovation with traditional craftsmanship.
+            </p>
+            <p
+              style="
+                color: #4e4b33;
+                font-size: 16px;
+                line-height: 1.7;
+                margin-bottom: 30px;
+              "
+            >
+              We believe in creating spaces that inspire and endure. From
+              residential homes to commercial complexes, our team of experts
+              ensures every project is completed on time and to the highest
+              standards.
+            </p>
+
+            <!-- Button -->
+            <a
+              href="#projects"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                padding: 12px 30px;
+                background: #b7d77d;
+                color: #000;
+                font-weight: 600;
+                border-radius: 10px;
+                text-decoration: none;
+                transition: 0.3s;
+              "
+            >
+              Read more
+            </a>
+          </div>
+        </div>
+        <!-- End Row -->
+
+        <!-- Highlight Boxes Row (Below About Content) -->
+        <div class="row g-3 mt-5 text-center">
+          <div class="col-md-3 col-6">
+            <div
+              style="
+                background: #b7d77d;
+                padding: 20px;
+                border-radius: 15px;
+                color: #fff;
+              "
+            >
+              <h4 style="margin: 0; font-size: 24px">50+</h4>
+              <p style="margin: 0; font-size: 14px">Years of Experience</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div
+              style="
+                background: #f68d8d;
+                padding: 20px;
+                border-radius: 15px;
+                color: #fff;
+              "
+            >
+              <h4 style="margin: 0; font-size: 24px">1000+</h4>
+              <p style="margin: 0; font-size: 14px">Projects Completed</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div
+              style="
+                background: #fbbf3f;
+                padding: 20px;
+                border-radius: 15px;
+                color: #fff;
+              "
+            >
+              <h4 style="margin: 0; font-size: 24px">500+</h4>
+              <p style="margin: 0; font-size: 14px">Happy Clients</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div
+              style="
+                background: #43c6ac;
+                padding: 20px;
+                border-radius: 15px;
+                color: #fff;
+              "
+            >
+              <h4 style="margin: 0; font-size: 24px">20+</h4>
+              <p style="margin: 0; font-size: 14px">Awards Won</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Highlight Boxes -->
+      </div>
+    </section>
+
+    <section id="services" style="padding: 80px 0; background: #f0f8ff">
+      <div class="container">
+        <h2
+          class="section-title"
+          style="text-align: center; font-size: 40px; color: #333"
+        >
+          Our Services
+        </h2>
+        <p
+          style="
+            text-align: center;
+            margin-bottom: 50px;
+            color: #555;
+            font-size: 16px;
+          "
+        >
+          We provide a wide range of services to bring your dream projects to
+          life.
+        </p>
+
+        <div class="row g-4">
+          <!-- Service 1 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background: black;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="pexels-pixabay-7931.jpg"
+                alt="Construction"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i
+                class="bi bi-bricks"
+                style="font-size: 40px; margin: 15px 0"
+              ></i>
+              <h4 style="padding-top: 10px">Construction</h4>
+              <p>Top-quality construction projects using modern techniques.</p>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background-color: #b7d77d;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                alt="Renovation"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i
+                class="bi bi-hammer"
+                style="font-size: 40px; margin: 15px 0"
+              ></i>
+              <h4 style="padding-top: 10px">Renovation</h4>
+              <p>
+                Elegant renovation solutions tailored to your vision and
+                lifestyle.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background: black;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=600&q=80"
+                alt="Interior Design"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i
+                class="bi bi-house-door"
+                style="font-size: 40px; margin: 15px 0"
+              ></i>
+              <h4 style="padding-top: 10px">Interior Design</h4>
+              <p>
+                Creative interior designs that bring life & style to your home.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background-color: #b7d77d;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="pexels-shkrabaanthony-5493655.jpg"
+                alt="Painting"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i
+                class="bi bi-palette"
+                style="font-size: 40px; margin: 15px 0"
+              ></i>
+              <h4 style="padding-top: 10px">Painting</h4>
+              <p>Vibrant and long-lasting painting services for residential.</p>
+            </div>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background: black;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="pexels-enrique72-15071423.jpg"
+                alt="Landscaping"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i class="bi bi-tree" style="font-size: 40px; margin: 20px 0"></i>
+              <h4 style="padding-top: 10px">Landscaping</h4>
+              <p>
+                Beautiful outdoor spaces designed to enhance your property’s
+                appeal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="col-md-4">
+            <div
+              class="service-card"
+              style="
+                background-color: #b7d77d;
+                color: #fff;
+                border-radius: 20px;
+                text-align: center;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+              "
+            >
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+                alt="Consulting"
+                style="width: 100%; height: 180px; object-fit: cover"
+              />
+              <i
+                class="bi bi-bricks"
+                style="font-size: 40px; margin: 15px 0"
+              ></i>
+
+              <h4 style="padding-top: 10px">Consulting</h4>
+              <p>
+                Professional guidance to make your construction projects
+                successful.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Our Projects</h2>
+        <div class="row g-4">
+          <div class="col-md-4 project-card">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+              alt=""
+            />
+          </div>
+          <div class="col-md-4 project-card">
+            <img
+              src="pexels-expect-best-79873-323780.jpg"
+              alt=""
+            />
+          </div>
+          <div class="col-md-4 project-card">
+            <img
+              src="pexels-binyaminmellish-106399.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+        <a
+          href="projects.html"
+          style="
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #b7d77d;
+            color: #000;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+            align-items: center;
+            align-content: center;
+            margin-left: 500px;
+          "
+        >
+          View Projects
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+      <div class="contact-container">
+        <!-- Left Content -->
+        <div class="contact-left">
+          <h4 class="section-subtitle">CONTACT US</h4>
+          <h1 class="section-title">
+            Request a Quote for<br />Your Next Project
+          </h1>
+
+          <form class="quote-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First name *</label>
+                <input type="text" required />
+              </div>
+              <div class="form-group">
+                <label>Last name *</label>
+                <input type="text" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" required />
+              </div>
+              <div class="form-group">
+                <label>Subject</label>
+                <input type="text" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>When are you looking to start?</label>
+                <select>
+                  <option>Immediately</option>
+                  <option>In 1-3 months</option>
+                  <option>Later this year</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">GET A QUOTE</button>
+          </form>
+        </div>
+
+        <!-- Right Image -->
+        <div class="contact-right">
+          <img
+            src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80"
+            alt="Modern Building"
+          />
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.js"></script>
+    <script>
+      // Navbar Scroll Effect
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      });
+    </script>
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Column 1: Logo + Navigation -->
+        <div class="footer-column">
+          <h2 class="footer-logo">SivaGowri</h2>
+          <ul class="footer-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Head Office -->
+        <div class="footer-column">
+          <h3>HEAD OFFICE</h3>
+          <p>500 Terry Francine St,<br />San Francisco, CA 94158</p>
+          <p>123-456-7890<br />info@mysite.com</p>
+        </div>
+
+        <!-- Column 3: Socials -->
+        <div class="footer-column">
+          <h3>SOCIALS</h3>
+          <p><a href="#">Facebook</a></p>
+          <p><a href="#">Instagram</a></p>
+          <p><a href="#">LinkedIn</a></p>
+        </div>
+
+        <!-- Column 4: Inquiries -->
+        <div class="footer-column">
+          <h3>INQUIRIES</h3>
+          <a href="#contact" class="btn btn-quote">Get a Quote →</a>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p><a href="#">Privacy Policy</a></p>
+        <p><a href="#">Accessibility Statement</a></p>
+      </div>
+      <p style="margin-top: -30px">
+        © 2025 SivaGowri Constructions. All rights reserved.
+      </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          320: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
+        },
+      });
+
+      // Hover animation
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener(
+          "mouseenter",
+          () => (card.style.transform = "scale(1.05)")
+        );
+        card.addEventListener(
+          "mouseleave",
+          () => (card.style.transform = "scale(1)")
+        );
+      });
+    </script>
+  </body>
+</html>
